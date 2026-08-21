@@ -435,15 +435,15 @@
         <div class="container">
             <h2>Ready to Get Started?</h2>
             <p>Join businesses and professionals who trust NotaVault for their notarization needs</p>
-            <div class="form-group" id="contact-form">
+            <form name="contact-notavault" method="POST" netlify class="form-group" id="contact-form">
                 <h3 style="margin-bottom: 1.5rem; text-align: center; color: var(--primary);">Get in Touch</h3>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <input type="tel" placeholder="Phone Number" required>
-                <textarea placeholder="Tell us about your notarization needs" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; font-size: 1rem; font-family: inherit;" rows="4"></textarea>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <textarea name="message" placeholder="Tell us about your notarization needs" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; font-size: 1rem; font-family: inherit;" rows="4"></textarea>
                 <button type="submit">Send Inquiry</button>
                 <p style="font-size: 0.85rem; margin-top: 1rem; color: var(--text-light);">We'll respond within 24 hours during business days.</p>
-            </div>
+            </form>
         </div>
     </section>
 
@@ -476,21 +476,14 @@
     </footer>
 
     <script>
-        // Simple form handling
-        document.querySelector('button[type="submit"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            const form = this.closest('.form-group');
-            const email = form.querySelector('input[type="email"]').value;
-            const name = form.querySelector('input[type="text"]').value;
-
-            if (email && name) {
-                // Simple validation message
-                alert('Thank you! We will contact you soon at ' + email);
-                form.reset();
-            } else {
-                alert('Please fill in all required fields.');
-            }
-        });
+        // Netlify Forms integration
+        const form = document.getElementById('contact-form');
+        if (form) {
+            form.addEventListener('submit', function() {
+                // Netlify will handle the submission and redirect
+                // Form data is automatically sent to Netlify
+            });
+        }
     </script>
 </body>
 </html>
