@@ -1,4 +1,4 @@
-# BreathWorks Phase 4b: MVP Feature Spec and Tech Stack
+# FourCount Phase 4b: MVP Feature Spec and Tech Stack
 
 Date: 2026-09-09
 Inputs: Phase 1 to 3 research (tracker sections), 04_techniques_evidence.md, App Dev Lessons Learned Parts 1 to 6.
@@ -61,7 +61,7 @@ Pricing (Phase 2 recommendation): $9.99 per month, $59.99 per year, 14-day trial
 | Audio and haptics | expo-av, expo-haptics | Session cues. |
 | Charts | react-native-svg, hand-drawn lines | No chart library dependency risk in release builds. |
 | Backend | None in v1.0 | Add Supabase only when sync is a paid feature people ask for. |
-| Web prototype | `breathworks/app/index.html` in this repo | Testable today. Technique engine and program logic port 1:1 to TypeScript. |
+| Web prototype | `fourcount/app/index.html` in this repo | Testable today. Technique engine and program logic port 1:1 to TypeScript. |
 
 ---
 
@@ -97,7 +97,7 @@ Submission rules:
 
 ## 6. Open decisions (owner: you)
 
-1. Name: FOURCOUNT (selected Aug 24, trademark knockout pending) vs BreathWorks (this session). Pick one before store setup.
+1. Name: decided, FOURCOUNT (2026-09-09). Remaining: buy fourcount.app and holdcount.app, then the Class 9 and 41 knockout search.
 2. Lane: calm vs performance. The canvas shows both. Evidence favors training. Institutional channel (Ironbridge federal posture) is lane-neutral.
 3. Own repo: this prototype lives in notavault-site for speed. Move to its own repo when the Expo project starts.
 
