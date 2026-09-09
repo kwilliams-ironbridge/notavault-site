@@ -94,7 +94,7 @@ Banned (carried over from Phase 3 section 6): no treatment or cure language, no 
 
 ## 4. Conflicts found during this pass
 
-1. **Name.** Resolved 2026-09-09: FOURCOUNT. BreathWorks collided with a live Breath Works LLC trademark (breathing classes, filed 2021) and with Breathwrk (Peloton). fourcount.app showed no DNS record at decision time; confirm at the registrar.
+1. **Name.** Resolved 2026-09-09: FOURCOUNT. BreathWorks collided with a live Breath Works LLC trademark (breathing classes, filed 2021) and with Breathwrk (Peloton). fourcount.app is owned.
 2. **Positioning.** Dispatch row "Resolve the FourCount positioning conflict: calm app or performance training?" is still Blocked as of Sep 8. Phase 3 already decided TRAINING. This evidence pass supports training: the strongest measurable results (HRV, respiratory rate, control pause) are progression metrics, which is a training story. The design canvas shows both lanes side by side so the decision can be made by looking, not arguing.
 
 ---

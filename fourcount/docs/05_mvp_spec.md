@@ -97,7 +97,7 @@ Submission rules:
 
 ## 6. Open decisions (owner: you)
 
-1. Name: decided, FOURCOUNT (2026-09-09). Remaining: buy fourcount.app and holdcount.app, then the Class 9 and 41 knockout search.
+1. Name: decided, FOURCOUNT (2026-09-09). fourcount.app is owned. Remaining: holdcount defensively (optional), then the Class 9 and 41 knockout search.
 2. Lane: calm vs performance. The canvas shows both. Evidence favors training. Institutional channel (Ironbridge federal posture) is lane-neutral.
 3. Own repo: this prototype lives in notavault-site for speed. Move to its own repo when the Expo project starts.
 
