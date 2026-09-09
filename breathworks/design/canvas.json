@@ -1,0 +1,14 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "title": "Today (Training lane)", "x": 0, "y": 0, "w": 390, "h": 844 },
+    { "file": "Session.dc.html", "title": "Session", "x": 480, "y": 0, "w": 390, "h": 844 },
+    { "file": "Progress.dc.html", "title": "Progress", "x": 960, "y": 0, "w": 390, "h": 844 },
+    { "file": "Paywall.dc.html", "title": "Paywall", "x": 1440, "y": 0, "w": 390, "h": 844 },
+    { "file": "CalmLane.dc.html", "title": "Direction B: Calm lane (alternate)", "x": 2040, "y": 0, "w": 390, "h": 844 }
+  ],
+  "annotations": [
+    { "id": "lane-note", "x": 0, "y": -170, "w": 420, "text": "Direction A (Training lane) is the deliverable: dark, instrument-like, prescribes one session, shows the graph. Matches Phase 3 positioning.\nDirection B (far right) is the calm lane for comparison, so the Sep 8 positioning decision can be made by looking." },
+    { "id": "paywall-note", "x": 1440, "y": -110, "w": 390, "text": "Paywall carries every element App Review checks on-screen (Lessons Learned 3.4). Prices are the Phase 2 recommendation, not final." }
+  ],
+  "launch": { "view": "canvas" }
+}

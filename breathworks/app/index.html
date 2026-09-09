@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BreathWorks</title>
+<meta name="theme-color" content="#0e1116">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1116; --surface:#161b22; --surface2:#1e2530; --line:#2a3340;
+    --text:#e8e6e1; --muted:#8b95a5; --accent:#35c4b5; --accent-dim:#1d6b64;
+    --hold:#d9a441; --danger:#e06c6c;
+    --sans:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{display:flex;justify-content:center}
+  #app{width:100%;max-width:430px;min-height:100vh;display:flex;flex-direction:column;position:relative}
+  .screen{display:none;flex:1;flex-direction:column;padding:28px 22px 96px}
+  .screen.active{display:flex}
+  h1{font-size:28px;font-weight:700;letter-spacing:-0.02em;line-height:1.15}
+  h2{font-size:18px;font-weight:500;color:var(--muted);letter-spacing:.02em;text-transform:uppercase;font-size:12px}
+  p{line-height:1.5;color:var(--muted);font-size:15px}
+  .eyebrow{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:16px}
+  .card.prime{border-color:var(--accent-dim)}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .stack{display:flex;flex-direction:column;gap:12px}
+  .btn{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:12px;border:0;font:inherit;font-weight:700;font-size:16px;cursor:pointer;width:100%;color:var(--bg);background:var(--accent)}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .btn.quiet{background:transparent;color:var(--muted);min-height:44px;font-weight:500}
+  .btn:disabled{opacity:.4;cursor:default}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .big{font-family:var(--mono);font-size:44px;font-weight:500;line-height:1}
+  .stat{flex:1;background:var(--surface2);border-radius:12px;padding:14px}
+  .stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .stat .v{font-family:var(--mono);font-size:22px;margin-top:4px}
+  .stat .d{font-family:var(--mono);font-size:12px;color:var(--accent);margin-top:2px}
+  nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(14,17,22,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
+  nav button{flex:1;background:none;border:0;color:var(--muted);font:inherit;font-size:11px;min-height:48px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+  nav button.on{color:var(--accent)}
+  nav svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+  /* session */
+  .guide{position:relative;width:260px;height:260px;margin:32px auto 8px;display:flex;align-items:center;justify-content:center}
+  .ring{position:absolute;inset:0;border-radius:50%;border:1px solid var(--line)}
+  .orb{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#6fe0d3,var(--accent) 55%,var(--accent-dim));box-shadow:0 0 60px rgba(53,196,181,.25);transform:scale(1);transition:transform 1s linear}
+  .orb.hold{box-shadow:0 0 60px rgba(217,164,65,.22);background:radial-gradient(circle at 40% 35%,#f0cf87,var(--hold) 55%,#7a5a1e)}
+  .phase{font-size:26px;font-weight:700;text-align:center;letter-spacing:-.01em;min-height:32px}
+  .count{font-family:var(--mono);font-size:64px;text-align:center;line-height:1;margin-top:6px}
+  .remain{font-family:var(--mono);text-align:center;color:var(--muted);margin-top:10px;font-size:14px}
+  .scale{display:flex;gap:6px;justify-content:space-between;margin-top:14px}
+  .scale button{flex:1;min-height:44px;border-radius:8px;border:1px solid var(--line);background:var(--surface2);color:var(--text);font:inherit;font-family:var(--mono);cursor:pointer}
+  .scale button.on{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+  /* charts */
+  .chart{width:100%;height:120px;display:block;margin-top:8px}
+  .chart .grid{stroke:var(--line);stroke-width:1}
+  .chart .ln{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+  .chart .pt{fill:var(--bg);stroke:var(--accent);stroke-width:2}
+  .chart text{fill:var(--muted);font-family:var(--mono);font-size:10px}
+  .empty{color:var(--muted);font-size:14px;padding:12px 0}
+  .toggle{width:48px;height:28px;border-radius:14px;background:var(--line);position:relative;border:0;cursor:pointer}
+  .toggle::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--muted);transition:all .15s}
+  .toggle.on{background:var(--accent-dim)}
+  .toggle.on::after{left:23px;background:var(--accent)}
+  .link{color:var(--accent);text-decoration:none}
+  .tiny{font-size:12px;color:var(--muted);line-height:1.5}
+  .week{display:flex;gap:6px;margin-top:14px}
+  .week span{flex:1;height:6px;border-radius:3px;background:var(--line)}
+  .week span.done{background:var(--accent)}
+  .week span.now{background:var(--accent-dim);outline:1px solid var(--accent)}
+  .fade{animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ONBOARDING -->
+  <section class="screen" id="s-onboard">
+    <div id="ob-1" class="stack fade">
+      <div class="eyebrow">BreathWorks</div>
+      <h1>Most breathing apps give you a session. This one gives you a training program, and shows you the graph.</h1>
+      <p>Five minutes a day. Three numbers you can measure with nothing but your phone. Four weeks to a lower resting breathing rate.</p>
+      <div class="card">
+        <div class="tiny">Built on controlled trials: cyclic sighing (Stanford, 2023), resonance breathing at 6 breaths per minute (HRV biofeedback research), and the Buteyko control pause. Not a medical device. Not a treatment.</div>
+      </div>
+      <button class="btn" onclick="ob(2)">Start with the diaphragm lesson</button>
+    </div>
+    <div id="ob-2" class="stack fade" hidden>
+      <div class="eyebrow">Lesson 1 of 1</div>
+      <h1>Breathe into the belly, not the chest.</h1>
+      <p>Put one hand on your chest and one on your stomach. Breathe in through your nose for four seconds. The lower hand should rise first. The upper hand stays almost still.</p>
+      <p>Do that five times. This is the mechanic every technique in the program is built on.</p>
+      <div class="card"><div class="row"><span>Belly breaths</span><span class="big num" id="ob-count">0</span></div><button class="btn ghost" style="margin-top:14px" onclick="obCount()">I did one</button></div>
+      <button class="btn" id="ob-next" onclick="ob(3)" disabled>Next: your baseline</button>
+    </div>
+    <div id="ob-3" class="stack fade" hidden>
+      <div class="eyebrow">Baseline</div>
+      <h1>Three numbers. Ninety seconds.</h1>
+      <p>These are your starting point. You will re-test every seven days and watch them move.</p>
+      <button class="btn" onclick="finishOnboard(true)">Take the baseline test</button>
+      <button class="btn quiet" onclick="finishOnboard(false)">Skip for now</button>
+    </div>
+  </section>
+
+  <!-- TODAY -->
+  <section class="screen" id="s-today">
+    <div class="row"><div><div class="eyebrow" id="t-date"></div><h1 id="t-title">Today</h1></div><div style="text-align:right"><div class="tiny">Streak</div><div class="big num" id="t-streak">0</div></div></div>
+    <div class="week" id="t-week"></div>
+    <div class="card prime">
+      <div class="eyebrow" id="t-week-label">Week 1</div>
+      <div style="font-size:22px;font-weight:700" id="t-tech">Cyclic sighing</div>
+      <p id="t-desc" style="margin-top:6px"></p>
+      <div class="row" style="margin-top:14px"><span class="num" id="t-dur" style="color:var(--muted)">5 min</span><span class="num" id="t-pattern" style="color:var(--muted)"></span></div>
+      <button class="btn" style="margin-top:16px" onclick="startSession()">Start</button>
+    </div>
+    <div class="card" id="t-retest" hidden>
+      <div class="row"><div><div style="font-weight:700">Re-test due</div><div class="tiny">Seven days since your last measurement.</div></div><button class="btn ghost" style="width:auto;padding:0 16px;min-height:44px" onclick="go('test')">Test</button></div>
+    </div>
+    <div class="row" style="margin-top:16px;gap:10px" id="t-stats"></div>
+  </section>
+
+  <!-- SESSION -->
+  <section class="screen" id="s-session">
+    <div id="ss-pre" class="stack fade">
+      <div class="eyebrow" id="ss-tech"></div>
+      <h1>How calm are you right now?</h1>
+      <p>1 is wired. 10 is fully settled. Answer fast, first instinct.</p>
+      <div class="scale" id="ss-pre-scale"></div>
+      <div class="card"><div style="font-weight:700;margin-bottom:6px">How to do it</div><p id="ss-how"></p></div>
+      <button class="btn" id="ss-begin" onclick="beginBreathing()" disabled>Begin</button>
+      <button class="btn quiet" onclick="go('today')">Not now</button>
+    </div>
+    <div id="ss-run" hidden>
+      <div class="row"><div class="eyebrow" id="ss-run-tech"></div><button class="btn quiet" style="width:auto" onclick="endSession(false)">End</button></div>
+      <div class="guide"><div class="ring"></div><div class="ring" style="inset:34px;opacity:.6"></div><div class="orb" id="orb"></div></div>
+      <div class="phase" id="ss-phase">Get ready</div>
+      <div class="count num" id="ss-count">3</div>
+      <div class="remain" id="ss-remain"></div>
+    </div>
+    <div id="ss-post" class="stack fade" hidden>
+      <div class="eyebrow">Session complete</div>
+      <h1>And now?</h1>
+      <p>Same scale. 1 is wired, 10 is settled.</p>
+      <div class="scale" id="ss-post-scale"></div>
+      <div class="card" id="ss-result" hidden></div>
+      <button class="btn" id="ss-save" onclick="saveSession()" disabled>Save session</button>
+    </div>
+  </section>
+
+  <!-- TEST -->
+  <section class="screen" id="s-test">
+    <div class="eyebrow">Measurement</div>
+    <h1 id="te-title">Resting breathing rate</h1>
+    <p id="te-desc"></p>
+    <div class="card" style="text-align:center;padding:28px 20px">
+      <div class="big num" id="te-big">60</div>
+      <div class="tiny" id="te-sub" style="margin-top:8px"></div>
+      <button class="btn" id="te-btn" style="margin-top:20px" onclick="testAction()">Start</button>
+    </div>
+    <div class="row" style="margin-top:16px;gap:10px" id="te-summary"></div>
+    <button class="btn quiet" onclick="go('today')">Cancel</button>
+  </section>
+
+  <!-- PROGRESS -->
+  <section class="screen" id="s-progress">
+    <div class="eyebrow">Progress</div>
+    <h1>The graph.</h1>
+    <div class="card"><div class="row"><h2>Resting breaths / min</h2><span class="num" id="p-rr-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-rr"></svg><div class="tiny">Lower is better. The Stanford trial's main physiological outcome.</div></div>
+    <div class="card"><div class="row"><h2>Control pause (s)</h2><span class="num" id="p-bolt-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-bolt"></svg><div class="tiny">Higher is better. CO2 tolerance. 25 s or more is a solid target.</div></div>
+    <div class="card"><div class="row"><h2>Longest exhale (s)</h2><span class="num" id="p-ex-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-ex"></svg><div class="tiny">Higher is better. Exhale control drives three of your five techniques.</div></div>
+    <div class="card"><div class="row"><h2>Calm shift per session</h2><span class="num" id="p-calm-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-calm"></svg><div class="tiny">After minus before, on the 10-point scale.</div></div>
+    <div class="card"><div class="row"><h2>Sessions</h2><span class="num" id="p-sessions"></span></div><div class="row" style="margin-top:6px"><h2>Minutes trained</h2><span class="num" id="p-minutes"></span></div></div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="screen" id="s-settings">
+    <div class="eyebrow">Settings</div>
+    <h1>Settings</h1>
+    <div class="card stack">
+      <div class="row"><div><div style="font-weight:700">Daily reminder</div><div class="tiny">8:00 pm, local time</div></div><button class="toggle" id="set-remind" onclick="toggleSetting('remind',this)"></button></div>
+      <div class="row"><div><div style="font-weight:700">Sound cues</div><div class="tiny">Tone on each phase change</div></div><button class="toggle" id="set-sound" onclick="toggleSetting('sound',this)"></button></div>
+    </div>
+    <div class="card stack">
+      <div class="row"><div><div style="font-weight:700">BreathWorks Pro</div><div class="tiny" id="set-plan">Free plan. Week 1 and baseline included.</div></div><button class="btn ghost" style="width:auto;padding:0 16px;min-height:44px" onclick="go('paywall')">Upgrade</button></div>
+      <button class="btn quiet" onclick="alert('Prototype: nothing to restore yet.')">Restore Purchases</button>
+    </div>
+    <div class="card stack">
+      <a class="link" href="#" onclick="alert('Privacy Policy URL goes live before the paywall is coded. Lessons Learned 2.3.');return false">Privacy Policy</a>
+      <a class="link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Terms of Use (Apple standard EULA)</a>
+      <button class="btn quiet" style="color:var(--danger)" onclick="resetAll()">Reset all data</button>
+    </div>
+    <div class="tiny" style="margin-top:16px">BreathWorks web prototype. Data stays in this browser. Not a medical device.</div>
+  </section>
+
+  <!-- PAYWALL -->
+  <section class="screen" id="s-paywall">
+    <div class="eyebrow">BreathWorks Pro</div>
+    <h1>Weeks 2 to 4, and every re-test.</h1>
+    <p>Resonance training, the box breathing ladder, the evening exhale program, and weekly measurements that keep the graph moving.</p>
+    <div class="card prime" onclick="pickPlan('annual')" id="plan-annual" style="cursor:pointer">
+      <div class="row"><div><div style="font-weight:700">Annual</div><div class="tiny">14-day free trial, then $59.99 per year ($5.00 per month)</div></div><div class="num" style="font-size:20px">$59.99</div></div>
+    </div>
+    <div class="card" onclick="pickPlan('monthly')" id="plan-monthly" style="cursor:pointer">
+      <div class="row"><div><div style="font-weight:700">Monthly</div><div class="tiny">$9.99 per month, no trial</div></div><div class="num" style="font-size:20px">$9.99</div></div>
+    </div>
+    <button class="btn" style="margin-top:16px" onclick="buy()">Continue</button>
+    <div class="tiny" style="margin-top:14px">Payment is charged to your Apple ID at confirmation. The subscription renews automatically unless cancelled at least 24 hours before the end of the current period. Manage or cancel in Settings on your device.</div>
+    <div class="row" style="margin-top:14px;justify-content:flex-start;gap:16px"><a class="link tiny" href="#" onclick="return false">Privacy Policy</a><a class="link tiny" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Terms of Use</a><a class="link tiny" href="#" onclick="alert('Prototype: nothing to restore yet.');return false">Restore Purchases</a></div>
+    <button class="btn quiet" onclick="unlockPrototype()">Prototype only: continue without paying</button>
+    <button class="btn quiet" onclick="go('today')">Back</button>
+  </section>
+
+  <nav id="nav">
+    <button data-go="today" onclick="go('today')"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Today</button>
+    <button data-go="test" onclick="go('test')"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>Test</button>
+    <button data-go="progress" onclick="go('progress')"><svg viewBox="0 0 24 24"><path d="M3 20h18M4 16l5-6 4 3 7-8"/></svg>Progress</button>
+    <button data-go="settings" onclick="go('settings')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</button>
+  </nav>
+</div>
+
+<script>
+/* ---------- techniques (ports 1:1 to TypeScript) ---------- */
+const TECH = {
+  sigh: { name:'Cyclic sighing', desc:'Two inhales through the nose, one long exhale through the mouth. The fastest way to lower arousal, and the best-studied five-minute protocol.', how:'Inhale through your nose until mostly full. Take a second, shorter sip of air on top. Then exhale slowly through the mouth until empty. Repeat for five minutes.', minutes:5,
+    phases:[{l:'Inhale',s:2,k:'in',sc:1.55},{l:'Sip',s:1,k:'in',sc:1.85},{l:'Exhale',s:6,k:'out',sc:1}] },
+  resonance: { name:'Resonance breathing', desc:'Five and a half breaths per minute. The rate that maximizes heart-rate variability in most adults.', how:'Breathe in through the nose for five seconds and out for five and a half. Smooth, quiet, no holds. Let the belly lead.', minutes:5,
+    phases:[{l:'Inhale',s:5,k:'in',sc:1.85},{l:'Exhale',s:5.5,k:'out',sc:1}] },
+  box: { name:'Box breathing', desc:'Equal inhale, hold, exhale, hold. The performance breath. Your count climbs as you get steadier.', how:'In through the nose, hold, out through the nose, hold. Every side the same length. If the hold gets sharp, the count is too high.', minutes:6,
+    phases:c=>[{l:'Inhale',s:c,k:'in',sc:1.85},{l:'Hold',s:c,k:'hold',sc:1.85},{l:'Exhale',s:c,k:'out',sc:1},{l:'Hold',s:c,k:'hold',sc:1}] },
+  exhale: { name:'Extended exhale', desc:'Short inhale, long exhale. The evening session. Exhale length grows across the week.', how:'In through the nose for four. Out through pursed lips for the full count, slow and quiet. Do this sitting or lying down.', minutes:5,
+    phases:r=>[{l:'Inhale',s:4,k:'in',sc:1.85},{l:'Exhale',s:r,k:'out',sc:1}] },
+};
+
+/* ---------- state ---------- */
+const KEY='breathworks.v1';
+let S=load();
+function load(){ try{ const j=JSON.parse(localStorage.getItem(KEY)); if(j) return j; }catch(e){} return {onboarded:false,start:null,sessions:[],tests:[],boxCount:4,exhaleRatio:6,pro:false,remind:false,sound:true}; }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+const day0=d=>{const x=new Date(d);x.setHours(0,0,0,0);return x;};
+const today=()=>day0(new Date());
+function dayIndex(){ if(!S.start) return 0; return Math.max(0,Math.round((today()-day0(S.start))/86400000)); }
+function week(){ return Math.min(4,Math.floor(dayIndex()/7)+1); }
+function prescribe(){
+  const w=week(), evening=new Date().getHours()>=17;
+  if(w===1) return {id:'sigh',t:TECH.sigh,phases:TECH.sigh.phases,min:5};
+  if(w===2) return {id:'resonance',t:TECH.resonance,phases:TECH.resonance.phases,min:5};
+  if(w===3) return {id:'box',t:TECH.box,phases:TECH.box.phases(S.boxCount),min:6};
+  if(evening) return {id:'exhale',t:TECH.exhale,phases:TECH.exhale.phases(S.exhaleRatio),min:5};
+  return {id:'resonance',t:TECH.resonance,phases:TECH.resonance.phases,min:6};
+}
+function streak(){
+  const days=new Set(S.sessions.map(s=>day0(s.date).getTime()));
+  let n=0, d=today().getTime();
+  if(!days.has(d)) d-=86400000;
+  while(days.has(d)){n++;d-=86400000;}
+  return n;
+}
+function lastTest(){ return S.tests[S.tests.length-1]; }
+function retestDue(){ const t=lastTest(); if(!t) return true; return (today()-day0(t.date))/86400000>=7; }
+
+/* ---------- navigation ---------- */
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-'+id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===id));
+  document.getElementById('nav').style.display=(id==='session'||id==='onboard'||id==='paywall')?'none':'flex';
+  window.scrollTo(0,0);
+  if(id==='today') renderToday();
+  if(id==='progress') renderProgress();
+  if(id==='test') startTests();
+  if(id==='settings') renderSettings();
+}
+
+/* ---------- onboarding ---------- */
+let obN=0;
+function ob(n){ [1,2,3].forEach(i=>document.getElementById('ob-'+i).hidden=(i!==n)); }
+function obCount(){ obN++; document.getElementById('ob-count').textContent=obN; if(obN>=5) document.getElementById('ob-next').disabled=false; }
+function finishOnboard(test){ S.onboarded=true; S.start=S.start||today().toISOString(); save(); go(test?'test':'today'); }
+
+/* ---------- today ---------- */
+function renderToday(){
+  const p=prescribe(), w=week();
+  document.getElementById('t-date').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'});
+  document.getElementById('t-title').textContent='Day '+(dayIndex()+1);
+  document.getElementById('t-streak').textContent=streak();
+  document.getElementById('t-week').innerHTML=[1,2,3,4].map(i=>`<span class="${i<w?'done':i===w?'now':''}"></span>`).join('');
+  document.getElementById('t-week-label').textContent='Week '+w+' of 4'+(w>=2&&!S.pro?' · Pro':'');
+  document.getElementById('t-tech').textContent=p.t.name;
+  document.getElementById('t-desc').textContent=p.t.desc;
+  document.getElementById('t-dur').textContent=p.min+' min';
+  document.getElementById('t-pattern').textContent=p.phases.map(x=>x.s).join(' · ')+' s';
+  document.getElementById('t-retest').hidden=!(S.tests.length&&retestDue());
+  const t=lastTest(), first=S.tests[0];
+  const delta=(k,inv)=>{ if(!t||!first||t===first) return ''; const d=t[k]-first[k]; return (d>0?'+':'')+d.toFixed(k==='rr'?1:0)+(inv?(d<=0?' better':''):(d>=0?' better':'')); };
+  document.getElementById('t-stats').innerHTML = t ? `
+    <div class="stat"><div class="l">Breaths/min</div><div class="v">${t.rr.toFixed(1)}</div><div class="d">${delta('rr',true)}</div></div>
+    <div class="stat"><div class="l">Control pause</div><div class="v">${t.bolt}s</div><div class="d">${delta('bolt')}</div></div>
+    <div class="stat"><div class="l">Exhale</div><div class="v">${t.exhale}s</div><div class="d">${delta('exhale')}</div></div>`
+    : `<div class="stat" style="cursor:pointer" onclick="go('test')"><div class="l">No baseline yet</div><div class="v" style="font-size:15px;font-family:var(--sans)">Take the 90-second test so the graph has a starting point.</div></div>`;
+}
+
+/* ---------- session ---------- */
+let cur=null, pre=null, post=null, timer=null;
+function scaleButtons(el,cb){ el.innerHTML=''; for(let i=1;i<=10;i++){ const b=document.createElement('button'); b.textContent=i; b.onclick=()=>{[...el.children].forEach(c=>c.classList.remove('on')); b.classList.add('on'); cb(i);}; el.appendChild(b);} }
+function startSession(){
+  const p=prescribe();
+  if(week()>=2&&!S.pro){ go('paywall'); return; }
+  cur=p; pre=null; post=null;
+  document.getElementById('ss-tech').textContent=p.t.name+' · '+p.min+' min';
+  document.getElementById('ss-run-tech').textContent=p.t.name;
+  document.getElementById('ss-how').textContent=p.t.how;
+  document.getElementById('ss-begin').disabled=true;
+  scaleButtons(document.getElementById('ss-pre-scale'),v=>{pre=v;document.getElementById('ss-begin').disabled=false;});
+  document.getElementById('ss-pre').hidden=false; document.getElementById('ss-run').hidden=true; document.getElementById('ss-post').hidden=true;
+  go('session');
+}
+let audio=null;
+function beep(kind){
+  if(!S.sound) return;
+  try{ audio=audio||new (window.AudioContext||window.webkitAudioContext)(); const o=audio.createOscillator(), g=audio.createGain(); o.frequency.value=kind==='in'?440:kind==='out'?330:392; g.gain.value=.06; o.connect(g); g.connect(audio.destination); o.start(); o.stop(audio.currentTime+.12);}catch(e){}
+}
+function beginBreathing(){
+  document.getElementById('ss-pre').hidden=true; document.getElementById('ss-run').hidden=false;
+  const orb=document.getElementById('orb'), ph=document.getElementById('ss-phase'), ct=document.getElementById('ss-count'), rm=document.getElementById('ss-remain');
+  const total=cur.min*60; let elapsed=0, pi=-1, left=0, lead=3;
+  orb.style.transition='transform 1s linear'; orb.style.transform='scale(1)';
+  const tick=()=>{
+    if(lead>0){ ph.textContent='Get ready'; ct.textContent=lead; lead--; return; }
+    if(left<=0){ pi=(pi+1)%cur.phases.length; const p=cur.phases[pi]; left=p.s; ph.textContent=p.l; orb.classList.toggle('hold',p.k==='hold'); orb.style.transition=`transform ${p.s}s ${p.k==='hold'?'linear':'ease-in-out'}`; orb.style.transform=`scale(${p.sc})`; beep(p.k); }
+    ct.textContent=Math.ceil(left); left-=1; elapsed++;
+    const r=total-elapsed; rm.textContent=Math.floor(r/60)+':'+String(r%60).padStart(2,'0')+' left';
+    if(elapsed>=total) endSession(true);
+  };
+  tick(); timer=setInterval(tick,1000);
+}
+function endSession(done){
+  clearInterval(timer); timer=null;
+  document.getElementById('ss-run').hidden=true; document.getElementById('ss-post').hidden=false;
+  document.getElementById('ss-result').hidden=true; document.getElementById('ss-save').disabled=true;
+  cur.done=done;
+  scaleButtons(document.getElementById('ss-post-scale'),v=>{ post=v; const d=post-pre; const r=document.getElementById('ss-result'); r.hidden=false; r.innerHTML=`<div class="row"><span>Calm shift</span><span class="big num" style="color:var(--accent)">${d>0?'+':''}${d}</span></div><div class="tiny" style="margin-top:6px">${d>0?'That is the effect. Same time tomorrow.':d===0?'No shift today. That happens. The graph is built on weeks, not one session.':'Lower after than before. Note how you feel in an hour; sometimes the drop lands late.'}</div>`; document.getElementById('ss-save').disabled=false; });
+}
+function saveSession(){
+  S.sessions.push({date:new Date().toISOString(),tech:cur.id,minutes:cur.min,pre,post,done:!!cur.done});
+  if(cur.id==='box'&&cur.done){ const n=S.sessions.filter(s=>s.tech==='box'&&s.done).length; if(n%3===0&&S.boxCount<6) S.boxCount++; }
+  if(cur.id==='exhale'&&cur.done&&S.exhaleRatio<8) S.exhaleRatio++;
+  save(); go('today');
+}
+
+/* ---------- tests ---------- */
+const TESTS=[
+  {k:'rr',title:'Resting breathing rate',desc:'Sit still for a moment. When the timer starts, tap the button once for every inhale. Sixty seconds.',unit:'breaths/min'},
+  {k:'bolt',title:'Control pause',desc:'Breathe normally. After a normal exhale, pinch your nose and start the timer. Stop at the FIRST clear urge to breathe, not your max hold.',unit:'seconds'},
+  {k:'exhale',title:'Longest comfortable exhale',desc:'Take a normal breath in. Start the timer and exhale slowly through pursed lips. Stop when you are empty, without straining.',unit:'seconds'},
+];
+let ti=0, tres={}, tTimer=null, tStart=0, taps=0;
+function startTests(){ ti=0; tres={}; taps=0; renderTest(); }
+function renderTest(){
+  const t=TESTS[ti];
+  document.getElementById('te-title').textContent=t.title;
+  document.getElementById('te-desc').textContent=t.desc;
+  document.getElementById('te-big').textContent=t.k==='rr'?'60':'0.0';
+  document.getElementById('te-sub').textContent=t.k==='rr'?'seconds. Tap on every inhale.':'seconds';
+  document.getElementById('te-btn').textContent='Start';
+  document.getElementById('te-summary').innerHTML=Object.keys(tres).map(k=>{const d=TESTS.find(x=>x.k===k);return `<div class="stat"><div class="l">${d.title}</div><div class="v">${tres[k]}</div></div>`;}).join('');
+}
+function testAction(){
+  const t=TESTS[ti], btn=document.getElementById('te-btn'), big=document.getElementById('te-big');
+  if(t.k==='rr'){
+    if(!tTimer){ taps=0; let left=60; btn.textContent='Inhale (tap)'; tTimer=setInterval(()=>{ left--; big.textContent=left; if(left<=0){ clearInterval(tTimer); tTimer=null; tres.rr=taps; next(); } },1000); }
+    else { taps++; document.getElementById('te-sub').textContent=taps+' breaths so far'; }
+    return;
+  }
+  if(!tTimer){ tStart=Date.now(); btn.textContent='Stop'; tTimer=setInterval(()=>{ big.textContent=((Date.now()-tStart)/1000).toFixed(1); },100); }
+  else { clearInterval(tTimer); tTimer=null; tres[t.k]=Math.round((Date.now()-tStart)/1000); next(); }
+}
+function next(){
+  ti++;
+  if(ti<TESTS.length){ renderTest(); return; }
+  S.tests.push({date:new Date().toISOString(),rr:tres.rr,bolt:tres.bolt,exhale:tres.exhale}); S.start=S.start||today().toISOString(); save();
+  go('progress');
+}
+
+/* ---------- progress ---------- */
+function chart(id,points,fmt){
+  const svg=document.getElementById(id); const W=340,H=120,P=24;
+  if(points.length<2){ svg.innerHTML=`<text x="0" y="60">${points.length===1?'One reading. The line starts on your next re-test.':'No readings yet.'}</text>`; svg.setAttribute('viewBox',`0 0 ${W} ${H}`); return; }
+  const vals=points.map(p=>p.v), lo=Math.min(...vals), hi=Math.max(...vals), span=(hi-lo)||1;
+  const x=i=>P+i*(W-2*P)/(points.length-1), y=v=>H-P-(v-lo)/span*(H-2*P);
+  let s=`<line class="grid" x1="${P}" y1="${H-P}" x2="${W-P}" y2="${H-P}"/><line class="grid" x1="${P}" y1="${P}" x2="${W-P}" y2="${P}"/>`;
+  s+=`<path class="ln" d="${points.map((p,i)=>(i?'L':'M')+x(i)+' '+y(p.v)).join(' ')}"/>`;
+  points.forEach((p,i)=>{ s+=`<circle class="pt" cx="${x(i)}" cy="${y(p.v)}" r="3.5"/>`; });
+  s+=`<text x="${P}" y="${H-6}">${points[0].l}</text><text x="${W-P}" y="${H-6}" text-anchor="end">${points[points.length-1].l}</text><text x="${W-P}" y="${P-6}" text-anchor="end">${fmt(hi)}</text><text x="${W-P}" y="${H-P-6}" text-anchor="end">${fmt(lo)}</text>`;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.innerHTML=s;
+}
+function renderProgress(){
+  const lbl=d=>new Date(d).toLocaleDateString(undefined,{month:'short',day:'numeric'});
+  const t=S.tests, last=lastTest();
+  chart('c-rr',t.map(x=>({v:x.rr,l:lbl(x.date)})),v=>v.toFixed(0));
+  chart('c-bolt',t.map(x=>({v:x.bolt,l:lbl(x.date)})),v=>v+'s');
+  chart('c-ex',t.map(x=>({v:x.exhale,l:lbl(x.date)})),v=>v+'s');
+  const cs=S.sessions.filter(s=>s.pre&&s.post);
+  chart('c-calm',cs.map(s=>({v:s.post-s.pre,l:lbl(s.date)})),v=>(v>0?'+':'')+v);
+  document.getElementById('p-rr-now').textContent=last?last.rr:'';
+  document.getElementById('p-bolt-now').textContent=last?last.bolt+'s':'';
+  document.getElementById('p-ex-now').textContent=last?last.exhale+'s':'';
+  document.getElementById('p-calm-now').textContent=cs.length?((cs.reduce((a,s)=>a+s.post-s.pre,0)/cs.length).toFixed(1)+' avg'):'';
+  document.getElementById('p-sessions').textContent=S.sessions.length;
+  document.getElementById('p-minutes').textContent=S.sessions.reduce((a,s)=>a+s.minutes,0);
+}
+
+/* ---------- settings and paywall ---------- */
+function renderSettings(){ document.getElementById('set-remind').classList.toggle('on',S.remind); document.getElementById('set-sound').classList.toggle('on',S.sound); document.getElementById('set-plan').textContent=S.pro?'Pro. Weeks 2 to 4 and re-tests unlocked.':'Free plan. Week 1 and baseline included.'; }
+function toggleSetting(k,el){ S[k]=!S[k]; el.classList.toggle('on',S[k]); save(); }
+let plan='annual';
+function pickPlan(p){ plan=p; document.getElementById('plan-annual').classList.toggle('prime',p==='annual'); document.getElementById('plan-monthly').classList.toggle('prime',p==='monthly'); }
+function buy(){ alert('Prototype. In the iOS build this calls RevenueCat with the '+plan+' product. Use the link below to keep testing.'); }
+function unlockPrototype(){ S.pro=true; save(); go('today'); }
+function resetAll(){ if(confirm('Delete all sessions and tests on this device?')){ localStorage.removeItem(KEY); location.reload(); } }
+
+/* ---------- boot (demo seed for testers: ?demo, ?screen=progress) ---------- */
+const Q=new URLSearchParams(location.search);
+if(Q.has('demo')){
+  const d=n=>{const x=new Date();x.setDate(x.getDate()-n);return x.toISOString();};
+  S={onboarded:true,start:d(8),boxCount:4,exhaleRatio:6,pro:true,remind:true,sound:true,
+    tests:[{date:d(8),rr:14,bolt:15,exhale:10},{date:d(1),rr:11,bolt:21,exhale:14}],
+    sessions:[7,6,5,4,3,2,1,0].map(n=>({date:d(n),tech:n>1?'sigh':'resonance',minutes:5,pre:4,post:6+(n%3),done:true}))};
+  save();
+}
+go(Q.get('screen')||(S.onboarded?'today':'onboard'));
+</script>
+</body>
+</html>
