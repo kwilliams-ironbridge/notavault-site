@@ -1,29 +1,111 @@
 {
-  "pages": [
-    { "id": "page-1", "name": "Flows" },
-    { "id": "page-2", "name": "Alternates" }
-  ],
   "artboards": [
-    { "file": "Welcome.dc.html", "title": "1. Welcome", "x": 0, "y": 0, "w": 390, "h": 844, "page": "page-1" },
-    { "file": "Lesson.dc.html", "title": "2. Diaphragm lesson", "x": 480, "y": 0, "w": 390, "h": 844, "page": "page-1" },
-    { "file": "Baseline.dc.html", "title": "3. Baseline test", "x": 960, "y": 0, "w": 390, "h": 844, "page": "page-1" },
-
-    { "file": "Main.dc.html", "title": "4. Today", "x": 0, "y": 1040, "w": 390, "h": 844, "page": "page-1" },
-    { "file": "SessionPre.dc.html", "title": "5. Before: calm rating", "x": 480, "y": 1040, "w": 390, "h": 844, "page": "page-1" },
-    { "file": "Session.dc.html", "title": "6. Session (working guide)", "x": 960, "y": 1040, "w": 390, "h": 844, "page": "page-1", "is_interactive": true },
-    { "file": "SessionPost.dc.html", "title": "7. After: calm shift", "x": 1440, "y": 1040, "w": 390, "h": 844, "page": "page-1" },
-    { "file": "Progress.dc.html", "title": "8. Progress", "x": 1920, "y": 1040, "w": 390, "h": 844, "page": "page-1" },
-
-    { "file": "Settings.dc.html", "title": "9. Settings", "x": 0, "y": 2080, "w": 390, "h": 844, "page": "page-1" },
-    { "file": "Paywall.dc.html", "title": "10. Paywall", "x": 480, "y": 2080, "w": 390, "h": 844, "page": "page-1" },
-
-    { "file": "CalmLane.dc.html", "title": "Direction B: Calm lane", "x": 0, "y": 0, "w": 390, "h": 844, "page": "page-2" }
+    {
+      "file": "Welcome.dc.html",
+      "title": "1. Welcome",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Lesson.dc.html",
+      "title": "2. Diaphragm lesson",
+      "x": 480,
+      "y": 0,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Baseline.dc.html",
+      "title": "3. Baseline test",
+      "x": 960,
+      "y": 0,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Main.dc.html",
+      "title": "4. Today",
+      "x": 0,
+      "y": 1040,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "SessionPre.dc.html",
+      "title": "5. Before: calm rating",
+      "x": 480,
+      "y": 1040,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Session.dc.html",
+      "title": "6. Session (working guide)",
+      "x": 960,
+      "y": 1040,
+      "w": 390,
+      "h": 844,
+      "is_interactive": true
+    },
+    {
+      "file": "SessionPost.dc.html",
+      "title": "7. After: calm shift",
+      "x": 1440,
+      "y": 1040,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Progress.dc.html",
+      "title": "8. Progress",
+      "x": 1920,
+      "y": 1040,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Settings.dc.html",
+      "title": "9. Settings",
+      "x": 0,
+      "y": 2080,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Paywall.dc.html",
+      "title": "10. Paywall",
+      "x": 480,
+      "y": 2080,
+      "w": 390,
+      "h": 844
+    }
   ],
   "annotations": [
-    { "id": "row-onboarding", "x": 0, "y": -150, "w": 560, "text": "ONBOARDING, first run only. Welcome, diaphragm lesson, 90-second baseline. No account. Ends on Today.", "page": "page-1" },
-    { "id": "row-daily", "x": 0, "y": 890, "w": 560, "text": "DAILY LOOP. Today prescribes one session. Rate calm, breathe, rate again, see the shift. Progress is the retention loop. Tap Begin on screen 6 to run the guide.", "page": "page-1" },
-    { "id": "row-money", "x": 0, "y": 1930, "w": 560, "text": "MONEY. Paywall is 2 taps from launch (Settings > Upgrade) and appears at the Week 2 gate. Every App Review element is on the screen itself.", "page": "page-1" },
-    { "id": "alt-note", "x": 0, "y": -150, "w": 480, "text": "Direction B, calm lane, kept for the open positioning decision. Warm, mood-first, a library to browse. Bigger existing market but Calm and Headspace's turf, and it breaks the Phase 3 rule: never make a stressed user choose.", "page": "page-2" }
+    {
+      "id": "row-onboarding",
+      "x": 0,
+      "y": -150,
+      "w": 560,
+      "text": "ONBOARDING, first run only. Welcome, diaphragm lesson, 90-second baseline. No account. Ends on Today. Lane: performance training, locked 10 Sep."
+    },
+    {
+      "id": "row-daily",
+      "x": 0,
+      "y": 890,
+      "w": 560,
+      "text": "DAILY LOOP. Today prescribes one drill and keeps the 60-second Reset one tap away. Rate arousal, breathe, rate again, see the down-shift. Tap Begin on screen 6 to run the guide."
+    },
+    {
+      "id": "row-money",
+      "x": 0,
+      "y": 1930,
+      "w": 560,
+      "text": "MONEY. Paywall is 2 taps from launch (Settings > Upgrade) and appears at the Week 2 gate. Every App Review element is on the screen itself."
+    }
   ],
-  "launch": { "view": "canvas", "page": "page-1" }
+  "launch": {
+    "view": "canvas"
+  }
 }

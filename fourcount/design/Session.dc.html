@@ -15,7 +15,7 @@
 </helmet>
 <div style="width: 390px; height: 844px; background: #0e1116; color: #e8e6e1; display: flex; flex-direction: column; padding: 64px 22px 40px; box-sizing: border-box; position: relative; overflow: hidden;">
   <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #35c4b5;">Resonance breathing</div>
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #35c4b5;">Autonomic base</div>
     <div style="font-size: 14px; color: #8b95a5; padding: 10px 4px; cursor: pointer;" onClick="{{ stop }}">End</div>
   </div>
   <div style="position: relative; width: 300px; height: 300px; margin: 70px auto 0; display: flex; align-items: center; justify-content: center;">
@@ -31,12 +31,12 @@
       <div style="display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 12px; background: #35c4b5; color: #0e1116; font-weight: 700; font-size: 16px; cursor: pointer;" onClick="{{ start }}">Begin</div>
     </sc-if>
     <div style="display: flex; justify-content: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8b95a5;">
-      <span style="color: #35c4b5;">5 in</span><span>·</span><span>5.5 out</span><span>·</span><span>nose only</span>
+      <span style="color: #35c4b5;">5 in</span><span>·</span><span>5.5 out</span><span>·</span><span>no holds</span>
     </div>
   </div>
 </div>
 </x-dc>
-<script data-dc-script data-props='{"$preview":{"width":390,"height":844},"minutes":{"editor":"int","default":5,"min":1,"max":10,"unit":"min"}}'>
+<script data-dc-script data-props='{"$preview":{"width":390,"height":844},"minutes":{"editor":"int","default":6,"min":1,"max":10,"unit":"min"}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
@@ -72,7 +72,7 @@ class Component extends DCLogic {
     else if (s.running && ph) { phase = ph.l; count = String(Math.ceil(s.left + 1)); orb = { scale: ph.sc, dur: ph.s }; }
     else if (s.done) { phase = 'Complete'; count = '✓'; }
     const r = Math.max(0, total - s.elapsed);
-    const remain = s.running ? (Math.floor(r / 60) + ':' + String(r % 60).padStart(2, '0') + ' left') : (s.done ? 'Session saved' : 'Tap Begin to run the guide');
+    const remain = s.running ? (Math.floor(r / 60) + ':' + String(r % 60).padStart(2, '0') + ' left') : (s.done ? 'Drill logged' : 'Tap Begin to run the guide');
     return { phase: phase, count: count, remain: remain, orb: orb, idle: !s.running, start: start, stop: stop };
   }
 }

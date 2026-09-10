@@ -5,11 +5,11 @@ Inputs: Phase 1 to 3 research (tracker sections), 04_techniques_evidence.md, App
 
 ---
 
-## 1. Positioning (carried from Phase 3, confirmed by the evidence pass)
+## 1. Positioning (locked 2026-09-10, see docs/00_vision.md)
 
-"Most breathing apps give you a session. This one gives you a training program, and shows you the graph."
+"Regulate under load. The 4-count operators drill, trained like a skill and measured every week."
 
-Sold as TRAINING, not meditation. Primary persona: the Depleted Professional. Secondary: the Breath Athlete.
+Sold as PERFORMANCE TRAINING, modeled on military and first-responder tactical breathing. Primary persona: the operator, first responder, or athlete. Secondary: the civilian who wants that standard (the Depleted Professional, reframed). Coach voice. No treatment claims. No endorsement claims.
 
 Design rule: never make a stressed user choose. The home screen prescribes today's session. No library grid.
 
@@ -22,10 +22,10 @@ Lessons Learned 4.3: ship a smaller surface that works completely. Every entry p
 | Screen | What it does | Taps from launch |
 |--------|--------------|------------------|
 | Onboarding (first run only) | 3 screens: why training, the diaphragm lesson, baseline test. No account. | 0 |
-| Today | One prescribed session card, streak, next re-test date. One button: Start. | 0 |
-| Session | Animated breath guide, phase label, count, remaining time. Pre and post calm rating (1 to 10). | 1 |
+| Today | One prescribed drill card, streak, next re-test date. Two buttons: Start, and Reset (60 s, always available). | 0 |
+| Session | Animated breath guide, phase label, count, remaining time. Pre and post arousal rating (1 flat to 10 redlined). | 1 |
 | Test | Three timed measures: resting breaths per minute, control pause, longest exhale. Weekly. | 1 |
-| Progress | Four line charts: respiratory rate, control pause, exhale length, calm delta. 4-week view. | 1 |
+| Progress | Four line charts: CO2 tolerance (control pause), resting rate, exhale control, down-shift per drill. 4-week view. | 1 |
 | Settings | Reminders, sound, Upgrade (paywall), Restore Purchases, Privacy, Terms. | 1 |
 | Paywall | Monthly and annual with price, period, renewal disclosure, Terms, Privacy, Restore. | 2 (Settings > Upgrade) |
 
@@ -35,12 +35,14 @@ Not in v1.0: accounts, social, Wim Hof, camera HRV, iPad, Android, Apple Watch, 
 
 ## 3. The 4-week program (the product)
 
-| Week | Daily session | Duration | Progression lever |
-|------|---------------|----------|-------------------|
-| 1 | Cyclic sighing | 5 min | Fixed. Goal is the habit and the first felt win. |
-| 2 | Resonance breathing | 5 min, 5.5 bpm | Inhale 5 s, exhale 5.5 s. Week 3 moves to 6 min. |
-| 3 | Box breathing ladder | 6 min | Count starts at 4. Moves to 5 when the user completes 3 sessions without breaking rhythm. |
-| 4 | Extended exhale (evening) plus resonance (morning) | 5 + 6 min | Exhale ratio moves 4:6 to 4:8. |
+| Week | Daily drill | Duration | Progression lever |
+|------|-------------|----------|-------------------|
+| 1 | Box 4-count, plus the Reset drill taught on day 1 | 5 min + 60 s | Fixed 4-count. Goal is rhythm without breaking, and knowing the reset cold. |
+| 2 | Resonance breathing (autonomic base) | 6 min, 5.5 bpm | Inhale 5 s, exhale 5.5 s. No holds. |
+| 3 | Box ladder | 6 min | Count moves 4 to 5 to 6 after 3 clean sessions each. Hold grows with it. |
+| 4 | Extended exhale (evening) plus box (morning) | 5 + 5 min | Exhale ratio moves 4:6 to 4:8. |
+
+Reset drill: 60 seconds of physiological sighs, one tap from Today at any time, never gated.
 
 Re-test every 7 days. The graph is the retention loop. A missed day does not reset the program, it shifts it.
 
@@ -98,7 +100,7 @@ Submission rules:
 ## 6. Open decisions (owner: you)
 
 1. Name: decided, FOURCOUNT (2026-09-09). fourcount.app is owned. Remaining: holdcount defensively (optional), then the Class 9 and 41 knockout search.
-2. Lane: calm vs performance. The canvas shows both. Evidence favors training. Institutional channel (Ironbridge federal posture) is lane-neutral.
+2. Lane: decided, performance training (2026-09-10). Calm-lane artboard removed from the canvas.
 3. Own repo: this prototype lives in notavault-site for speed. Move to its own repo when the Expo project starts.
 
 ## 7. Money

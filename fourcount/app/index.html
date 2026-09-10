@@ -82,10 +82,10 @@
   <section class="screen" id="s-onboard">
     <div id="ob-1" class="stack fade">
       <div class="eyebrow">FourCount</div>
-      <h1>Most breathing apps give you a session. This one gives you a training program, and shows you the graph.</h1>
-      <p>Five minutes a day. Three numbers you can measure with nothing but your phone. Four weeks to a lower resting breathing rate.</p>
+      <h1>Regulate under load.</h1>
+      <p>The 4-count used in military and first-responder training, drilled five minutes a day and measured every week. Three numbers, no hardware. Four weeks to a lower resting rate and a longer hold.</p>
       <div class="card">
-        <div class="tiny">Built on controlled trials: cyclic sighing (Stanford, 2023), resonance breathing at 6 breaths per minute (HRV biofeedback research), and the Buteyko control pause. Not a medical device. Not a treatment.</div>
+        <div class="tiny">Built on controlled trials: tactical breathing under simulated ambush (Bouchard 2012), cyclic sighing (Stanford 2023), resonance breathing (HRV biofeedback research), and the control pause. Not a medical device. Not a treatment. Not affiliated with any agency or unit.</div>
       </div>
       <button class="btn" onclick="ob(2)">Start with the diaphragm lesson</button>
     </div>
@@ -99,8 +99,8 @@
     </div>
     <div id="ob-3" class="stack fade" hidden>
       <div class="eyebrow">Baseline</div>
-      <h1>Three numbers. Ninety seconds.</h1>
-      <p>These are your starting point. You will re-test every seven days and watch them move.</p>
+      <h1>Baseline. Three numbers, ninety seconds.</h1>
+      <p>Resting rate, CO2 tolerance, exhale control. Re-test every seven days. The graph is the proof.</p>
       <button class="btn" onclick="finishOnboard(true)">Take the baseline test</button>
       <button class="btn quiet" onclick="finishOnboard(false)">Skip for now</button>
     </div>
@@ -117,6 +117,9 @@
       <div class="row" style="margin-top:14px"><span class="num" id="t-dur" style="color:var(--muted)">5 min</span><span class="num" id="t-pattern" style="color:var(--muted)"></span></div>
       <button class="btn" style="margin-top:16px" onclick="startSession()">Start</button>
     </div>
+    <div class="card">
+      <div class="row"><div><div style="font-weight:700">Reset drill</div><div class="tiny">60 seconds. Any time you are redlined.</div></div><button class="btn ghost" style="width:auto;padding:0 16px;min-height:44px" onclick="startReset()">Reset</button></div>
+    </div>
     <div class="card" id="t-retest" hidden>
       <div class="row"><div><div style="font-weight:700">Re-test due</div><div class="tiny">Seven days since your last measurement.</div></div><button class="btn ghost" style="width:auto;padding:0 16px;min-height:44px" onclick="go('test')">Test</button></div>
     </div>
@@ -127,8 +130,8 @@
   <section class="screen" id="s-session">
     <div id="ss-pre" class="stack fade">
       <div class="eyebrow" id="ss-tech"></div>
-      <h1>How calm are you right now?</h1>
-      <p>1 is wired. 10 is fully settled. Answer fast, first instinct.</p>
+      <h1>Where is your arousal right now?</h1>
+      <p>1 is flat. 10 is redlined. First instinct.</p>
       <div class="scale" id="ss-pre-scale"></div>
       <div class="card"><div style="font-weight:700;margin-bottom:6px">How to do it</div><p id="ss-how"></p></div>
       <button class="btn" id="ss-begin" onclick="beginBreathing()" disabled>Begin</button>
@@ -142,12 +145,12 @@
       <div class="remain" id="ss-remain"></div>
     </div>
     <div id="ss-post" class="stack fade" hidden>
-      <div class="eyebrow">Session complete</div>
+      <div class="eyebrow">Drill complete</div>
       <h1>And now?</h1>
-      <p>Same scale. 1 is wired, 10 is settled.</p>
+      <p>Same scale. 1 flat, 10 redlined.</p>
       <div class="scale" id="ss-post-scale"></div>
       <div class="card" id="ss-result" hidden></div>
-      <button class="btn" id="ss-save" onclick="saveSession()" disabled>Save session</button>
+      <button class="btn" id="ss-save" onclick="saveSession()" disabled>Log drill</button>
     </div>
   </section>
 
@@ -169,11 +172,11 @@
   <section class="screen" id="s-progress">
     <div class="eyebrow">Progress</div>
     <h1>The graph.</h1>
-    <div class="card"><div class="row"><h2>Resting breaths / min</h2><span class="num" id="p-rr-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-rr"></svg><div class="tiny">Lower is better. The Stanford trial's main physiological outcome.</div></div>
-    <div class="card"><div class="row"><h2>Control pause (s)</h2><span class="num" id="p-bolt-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-bolt"></svg><div class="tiny">Higher is better. CO2 tolerance. 25 s or more is a solid target.</div></div>
-    <div class="card"><div class="row"><h2>Longest exhale (s)</h2><span class="num" id="p-ex-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-ex"></svg><div class="tiny">Higher is better. Exhale control drives three of your five techniques.</div></div>
-    <div class="card"><div class="row"><h2>Calm shift per session</h2><span class="num" id="p-calm-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-calm"></svg><div class="tiny">After minus before, on the 10-point scale.</div></div>
-    <div class="card"><div class="row"><h2>Sessions</h2><span class="num" id="p-sessions"></span></div><div class="row" style="margin-top:6px"><h2>Minutes trained</h2><span class="num" id="p-minutes"></span></div></div>
+    <div class="card"><div class="row"><h2>Resting rate (breaths/min)</h2><span class="num" id="p-rr-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-rr"></svg><div class="tiny">Lower is better. The Stanford trial's main physiological outcome.</div></div>
+    <div class="card"><div class="row"><h2>CO2 tolerance (control pause, s)</h2><span class="num" id="p-bolt-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-bolt"></svg><div class="tiny">Higher is better. CO2 tolerance. 25 s or more is a solid target.</div></div>
+    <div class="card"><div class="row"><h2>Exhale control (s)</h2><span class="num" id="p-ex-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-ex"></svg><div class="tiny">Higher is better. Exhale control drives three of your five techniques.</div></div>
+    <div class="card"><div class="row"><h2>Down-shift per drill</h2><span class="num" id="p-calm-now" style="color:var(--accent)"></span></div><svg class="chart" id="c-calm"></svg><div class="tiny">Before minus after on the arousal scale. Higher is better.</div></div>
+    <div class="card"><div class="row"><h2>Drills</h2><span class="num" id="p-sessions"></span></div><div class="row" style="margin-top:6px"><h2>Minutes trained</h2><span class="num" id="p-minutes"></span></div></div>
   </section>
 
   <!-- SETTINGS -->
@@ -200,7 +203,7 @@
   <section class="screen" id="s-paywall">
     <div class="eyebrow">FourCount Pro</div>
     <h1>Weeks 2 to 4, and every re-test.</h1>
-    <p>Resonance training, the box breathing ladder, the evening exhale program, and weekly measurements that keep the graph moving.</p>
+    <p>The autonomic base, the box ladder to a 6-count, the down-shift program, and weekly measurements that keep the graph moving.</p>
     <div class="card prime" onclick="pickPlan('annual')" id="plan-annual" style="cursor:pointer">
       <div class="row"><div><div style="font-weight:700">Annual</div><div class="tiny">14-day free trial, then $59.99 per year ($5.00 per month)</div></div><div class="num" style="font-size:20px">$59.99</div></div>
     </div>
@@ -225,13 +228,13 @@
 <script>
 /* ---------- techniques (ports 1:1 to TypeScript) ---------- */
 const TECH = {
-  sigh: { name:'Cyclic sighing', desc:'Two inhales through the nose, one long exhale through the mouth. The fastest way to lower arousal, and the best-studied five-minute protocol.', how:'Inhale through your nose until mostly full. Take a second, shorter sip of air on top. Then exhale slowly through the mouth until empty. Repeat for five minutes.', minutes:5,
+  sigh: { name:'Reset drill', desc:'Two inhales through the nose, one long exhale through the mouth. The fastest down-regulation there is. Sixty seconds, any time.', how:'Inhale through your nose until mostly full. Take a second, shorter sip of air on top. Then exhale slowly through the mouth until empty. Repeat until the timer ends.', minutes:1,
     phases:[{l:'Inhale',s:2,k:'in',sc:1.55},{l:'Sip',s:1,k:'in',sc:1.85},{l:'Exhale',s:6,k:'out',sc:1}] },
-  resonance: { name:'Resonance breathing', desc:'Five and a half breaths per minute. The rate that maximizes heart-rate variability in most adults.', how:'Breathe in through the nose for five seconds and out for five and a half. Smooth, quiet, no holds. Let the belly lead.', minutes:5,
+  resonance: { name:'Autonomic base', desc:'Resonance breathing at five and a half breaths per minute. The rate that maximizes heart-rate variability. This is where the long-term gain lives.', how:'In through the nose for five seconds, out for five and a half. Smooth, quiet, no holds. Belly leads.', minutes:6,
     phases:[{l:'Inhale',s:5,k:'in',sc:1.85},{l:'Exhale',s:5.5,k:'out',sc:1}] },
-  box: { name:'Box breathing', desc:'Equal inhale, hold, exhale, hold. The performance breath. Your count climbs as you get steadier.', how:'In through the nose, hold, out through the nose, hold. Every side the same length. If the hold gets sharp, the count is too high.', minutes:6,
+  box: { name:'Box 4-count', desc:'Equal inhale, hold, exhale, hold. The count used in military and first-responder training. Your count climbs as you hold rhythm.', how:'In through the nose, hold, out through the nose, hold. Every side the same length. If the hold gets sharp, the count is too high.', minutes:5,
     phases:c=>[{l:'Inhale',s:c,k:'in',sc:1.85},{l:'Hold',s:c,k:'hold',sc:1.85},{l:'Exhale',s:c,k:'out',sc:1},{l:'Hold',s:c,k:'hold',sc:1}] },
-  exhale: { name:'Extended exhale', desc:'Short inhale, long exhale. The evening session. Exhale length grows across the week.', how:'In through the nose for four. Out through pursed lips for the full count, slow and quiet. Do this sitting or lying down.', minutes:5,
+  exhale: { name:'Down-shift', desc:'Short inhale, long exhale. The under-load drill and the evening close. Exhale length grows across the week.', how:'In through the nose for four. Out through pursed lips for the full count, slow and quiet.', minutes:5,
     phases:r=>[{l:'Inhale',s:4,k:'in',sc:1.85},{l:'Exhale',s:r,k:'out',sc:1}] },
 };
 
@@ -246,11 +249,11 @@ function dayIndex(){ if(!S.start) return 0; return Math.max(0,Math.round((today(
 function week(){ return Math.min(4,Math.floor(dayIndex()/7)+1); }
 function prescribe(){
   const w=week(), evening=new Date().getHours()>=17;
-  if(w===1) return {id:'sigh',t:TECH.sigh,phases:TECH.sigh.phases,min:5};
-  if(w===2) return {id:'resonance',t:TECH.resonance,phases:TECH.resonance.phases,min:5};
+  if(w===1) return {id:'box',t:TECH.box,phases:TECH.box.phases(4),min:5};
+  if(w===2) return {id:'resonance',t:TECH.resonance,phases:TECH.resonance.phases,min:6};
   if(w===3) return {id:'box',t:TECH.box,phases:TECH.box.phases(S.boxCount),min:6};
   if(evening) return {id:'exhale',t:TECH.exhale,phases:TECH.exhale.phases(S.exhaleRatio),min:5};
-  return {id:'resonance',t:TECH.resonance,phases:TECH.resonance.phases,min:6};
+  return {id:'box',t:TECH.box,phases:TECH.box.phases(S.boxCount),min:5};
 }
 function streak(){
   const days=new Set(S.sessions.map(s=>day0(s.date).getTime()));
@@ -297,18 +300,19 @@ function renderToday(){
   const t=lastTest(), first=S.tests[0];
   const delta=(k,inv)=>{ if(!t||!first||t===first) return ''; const d=t[k]-first[k]; return (d>0?'+':'')+d.toFixed(k==='rr'?1:0)+(inv?(d<=0?' better':''):(d>=0?' better':'')); };
   document.getElementById('t-stats').innerHTML = t ? `
-    <div class="stat"><div class="l">Breaths/min</div><div class="v">${t.rr.toFixed(1)}</div><div class="d">${delta('rr',true)}</div></div>
-    <div class="stat"><div class="l">Control pause</div><div class="v">${t.bolt}s</div><div class="d">${delta('bolt')}</div></div>
-    <div class="stat"><div class="l">Exhale</div><div class="v">${t.exhale}s</div><div class="d">${delta('exhale')}</div></div>`
+    <div class="stat"><div class="l">Resting rate</div><div class="v">${t.rr.toFixed(1)}</div><div class="d">${delta('rr',true)}</div></div>
+    <div class="stat"><div class="l">CO2 tolerance</div><div class="v">${t.bolt}s</div><div class="d">${delta('bolt')}</div></div>
+    <div class="stat"><div class="l">Exhale control</div><div class="v">${t.exhale}s</div><div class="d">${delta('exhale')}</div></div>`
     : `<div class="stat" style="cursor:pointer" onclick="go('test')"><div class="l">No baseline yet</div><div class="v" style="font-size:15px;font-family:var(--sans)">Take the 90-second test so the graph has a starting point.</div></div>`;
 }
 
 /* ---------- session ---------- */
 let cur=null, pre=null, post=null, timer=null;
 function scaleButtons(el,cb){ el.innerHTML=''; for(let i=1;i<=10;i++){ const b=document.createElement('button'); b.textContent=i; b.onclick=()=>{[...el.children].forEach(c=>c.classList.remove('on')); b.classList.add('on'); cb(i);}; el.appendChild(b);} }
-function startSession(){
-  const p=prescribe();
-  if(week()>=2&&!S.pro){ go('paywall'); return; }
+function startReset(){ startSession({id:'sigh',t:TECH.sigh,phases:TECH.sigh.phases,min:1}); }
+function startSession(forced){
+  const p=forced||prescribe();
+  if(!forced&&week()>=2&&!S.pro){ go('paywall'); return; }
   cur=p; pre=null; post=null;
   document.getElementById('ss-tech').textContent=p.t.name+' · '+p.min+' min';
   document.getElementById('ss-run-tech').textContent=p.t.name;
@@ -342,7 +346,7 @@ function endSession(done){
   document.getElementById('ss-run').hidden=true; document.getElementById('ss-post').hidden=false;
   document.getElementById('ss-result').hidden=true; document.getElementById('ss-save').disabled=true;
   cur.done=done;
-  scaleButtons(document.getElementById('ss-post-scale'),v=>{ post=v; const d=post-pre; const r=document.getElementById('ss-result'); r.hidden=false; r.innerHTML=`<div class="row"><span>Calm shift</span><span class="big num" style="color:var(--accent)">${d>0?'+':''}${d}</span></div><div class="tiny" style="margin-top:6px">${d>0?'That is the effect. Same time tomorrow.':d===0?'No shift today. That happens. The graph is built on weeks, not one session.':'Lower after than before. Note how you feel in an hour; sometimes the drop lands late.'}</div>`; document.getElementById('ss-save').disabled=false; });
+  scaleButtons(document.getElementById('ss-post-scale'),v=>{ post=v; const d=pre-post; const r=document.getElementById('ss-result'); r.hidden=false; r.innerHTML=`<div class="row"><span>Down-shift</span><span class="big num" style="color:var(--accent)">${d>0?'-':d<0?'+':''}${Math.abs(d)}</span></div><div class="tiny" style="margin-top:6px">${d>0?'That is the skill. Same time tomorrow.':d===0?'No shift today. The graph is built on weeks, not one drill.':'Higher after than before. Note where you are in an hour; the drop sometimes lands late.'}</div>`; document.getElementById('ss-save').disabled=false; });
 }
 function saveSession(){
   S.sessions.push({date:new Date().toISOString(),tech:cur.id,minutes:cur.min,pre,post,done:!!cur.done});
@@ -404,11 +408,11 @@ function renderProgress(){
   chart('c-bolt',t.map(x=>({v:x.bolt,l:lbl(x.date)})),v=>v+'s');
   chart('c-ex',t.map(x=>({v:x.exhale,l:lbl(x.date)})),v=>v+'s');
   const cs=S.sessions.filter(s=>s.pre&&s.post);
-  chart('c-calm',cs.map(s=>({v:s.post-s.pre,l:lbl(s.date)})),v=>(v>0?'+':'')+v);
+  chart('c-calm',cs.map(s=>({v:s.pre-s.post,l:lbl(s.date)})),v=>(v>0?'+':'')+v);
   document.getElementById('p-rr-now').textContent=last?last.rr:'';
   document.getElementById('p-bolt-now').textContent=last?last.bolt+'s':'';
   document.getElementById('p-ex-now').textContent=last?last.exhale+'s':'';
-  document.getElementById('p-calm-now').textContent=cs.length?((cs.reduce((a,s)=>a+s.post-s.pre,0)/cs.length).toFixed(1)+' avg'):'';
+  document.getElementById('p-calm-now').textContent=cs.length?((cs.reduce((a,s)=>a+s.pre-s.post,0)/cs.length).toFixed(1)+' avg'):'';
   document.getElementById('p-sessions').textContent=S.sessions.length;
   document.getElementById('p-minutes').textContent=S.sessions.reduce((a,s)=>a+s.minutes,0);
 }
@@ -428,7 +432,7 @@ if(Q.has('demo')){
   const d=n=>{const x=new Date();x.setDate(x.getDate()-n);return x.toISOString();};
   S={onboarded:true,start:d(8),boxCount:4,exhaleRatio:6,pro:true,remind:true,sound:true,
     tests:[{date:d(8),rr:14,bolt:15,exhale:10},{date:d(1),rr:11,bolt:21,exhale:14}],
-    sessions:[7,6,5,4,3,2,1,0].map(n=>({date:d(n),tech:n>1?'sigh':'resonance',minutes:5,pre:4,post:6+(n%3),done:true}))};
+    sessions:[7,6,5,4,3,2,1,0].map(n=>({date:d(n),tech:n>1?'box':'resonance',minutes:5,pre:7,post:4-(n%3),done:true}))};
   save();
 }
 go(Q.get('screen')||(S.onboarded?'today':'onboard'));

@@ -3,6 +3,7 @@
 Date: 2026-09-09
 Name: FOURCOUNT (decided 2026-09-09)
 Purpose: pick the techniques the MVP ships with, based on popularity AND measurable evidence, not vibes.
+Lane: performance training (decided 2026-09-10). See section 3b.
 
 ---
 
@@ -64,12 +65,25 @@ App fit means a timer can guide it, a phone can measure it, and it has a progres
 | Alternate nostril / humming | 3 | 2 | 2 | 2 | none | 2.2 | Defer. Nice to have. |
 | Kapalabhati | 3 | 1 | 1 | 2 | medium | 1.6 | Skip. |
 
+### 3b. Performance-lane re-weighting (2026-09-10)
+
+The lane decision changes the order, not the list. Tactical (box) breathing has its own trial record once the outcome is performance under stress rather than mood:
+
+| Study | Population | Result |
+|-------|------------|--------|
+| Bouchard et al. 2012, PLOS ONE | 41 soldiers, live simulated ambush with IED | Tactical breathing with biofeedback lowered heart rate and cortisol response during the stressor. |
+| Röttger et al. 2021, Applied Psychophysiology and Biofeedback | Lab stress task | Tactical breathing produced less physiological arousal than prolonged exhalation. Prolonged exhalation scored better on task performance. Both beat control. |
+| Collabra: Psychology 2025 | Police, critical-incident simulation | Tactical breathing improved performance under stress. |
+| PMC 2024, "The first shot counts the most" | Student police officers | Tactical breathing before firing improved marksmanship accuracy. |
+
+What that means for the build: box 4-count is the entry drill (it is the name, the operator's default, and it has stress-performance evidence). Extended exhale is the performance-under-load drill (Röttger). Cyclic sighing is the 60-second reset tool. Resonance breathing is the autonomic base. The control pause becomes the headline metric because CO2 tolerance is the thing breath-hold selection tests and stress tolerance both load on.
+
 ### The five that ship in the MVP
 
-1. **Cyclic sighing** (5 min). The proof point: users feel it in one session, and it is the best-studied brief protocol.
-2. **Resonance breathing** at 5 to 6 bpm (5 to 10 min). Where the long-term measurable gain lives.
-3. **Box breathing** with a count ladder (4-4-4-4 up to 6-6-6-6). The technique people search for.
-4. **Extended exhale** (4-8, graduating to 4-7-8) as the evening session.
+1. **Box 4-count** (5 min, ladder to 6-count). The entry drill and the name.
+2. **Reset drill**: 60 seconds of cyclic sighing, one tap from Today. Rapid down-regulation, the best-studied brief protocol.
+3. **Resonance breathing** at 5.5 bpm (6 min). The autonomic base where the long-term measurable gain lives.
+4. **Extended exhale** (4-8, graduating to 4-7-8). The under-load drill and the evening down-shift.
 5. **Diaphragmatic breathing** as a one-time guided lesson in onboarding.
 
 ### The three measurements that make "the graph"
@@ -95,9 +109,17 @@ Banned (carried over from Phase 3 section 6): no treatment or cure language, no 
 ## 4. Conflicts found during this pass
 
 1. **Name.** Resolved 2026-09-09: FOURCOUNT. BreathWorks collided with a live Breath Works LLC trademark (breathing classes, filed 2021) and with Breathwrk (Peloton). fourcount.app is owned.
-2. **Positioning.** Dispatch row "Resolve the FourCount positioning conflict: calm app or performance training?" is still Blocked as of Sep 8. Phase 3 already decided TRAINING. This evidence pass supports training: the strongest measurable results (HRV, respiratory rate, control pause) are progression metrics, which is a training story. The design canvas shows both lanes side by side so the decision can be made by looking, not arguing.
+2. **Positioning.** Resolved 2026-09-10: performance training, modeled on military and first-responder tactical breathing. See docs/00_vision.md.
 
 ---
+
+## Sources (performance lane, added 2026-09-10)
+
+- Bouchard et al. 2012, PLOS ONE: https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0036169
+- Röttger et al. 2021: https://pubmed.ncbi.nlm.nih.gov/32757097/
+- Tactical breathing, police critical-incident simulation (Collabra 2025): https://online.ucpress.edu/collabra/article/11/1/144527/213538/Tactical-Breathing-Enhances-Police-Performance-in
+- Tactical breathing and marksmanship (PMC 2024): https://pmc.ncbi.nlm.nih.gov/articles/PMC11622642/
+- DHA Tactical Breather fact sheet: https://health.mil/Reference-Center/Fact-Sheets/2025/07/18/Tactical-Breather-App-Fact-Sheet
 
 ## Sources
 
