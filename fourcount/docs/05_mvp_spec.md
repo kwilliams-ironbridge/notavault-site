@@ -7,9 +7,9 @@ Inputs: Phase 1 to 3 research (tracker sections), 04_techniques_evidence.md, App
 
 ## 1. Positioning (locked 2026-09-10, see docs/00_vision.md)
 
-"Regulate under load. The 4-count operators drill, trained like a skill and measured every week."
+"Regulate under load. Any load. The 4-count operators drill, trained like a skill, measured every week, built for anyone."
 
-Sold as PERFORMANCE TRAINING, modeled on military and first-responder tactical breathing. Primary persona: the operator, first responder, or athlete. Secondary: the civilian who wants that standard (the Depleted Professional, reframed). Coach voice. No treatment claims. No endorsement claims.
+Sold as PERFORMANCE TRAINING for everyday people, modeled on military and first-responder tactical breathing. Audience: any adult who wants to regulate their own body. The operator is the standard, not the only customer. Phase 3 personas all apply. Coach voice, beginner-safe. Plain-language twin for every technical term. No treatment claims. No endorsement claims.
 
 Design rule: never make a stressed user choose. The home screen prescribes today's session. No library grid.
 
@@ -22,7 +22,7 @@ Lessons Learned 4.3: ship a smaller surface that works completely. Every entry p
 | Screen | What it does | Taps from launch |
 |--------|--------------|------------------|
 | Onboarding (first run only) | 3 screens: why training, the diaphragm lesson, baseline test. No account. | 0 |
-| Today | One prescribed drill card, streak, next re-test date. Two buttons: Start, and Reset (60 s, always available). | 0 |
+| Today | One prescribed drill card, streak, next re-test date. Two buttons: Start, and Reset (60 s, always available, named for everyday loads). | 0 |
 | Session | Animated breath guide, phase label, count, remaining time. Pre and post arousal rating (1 flat to 10 redlined). | 1 |
 | Test | Three timed measures: resting breaths per minute, control pause, longest exhale. Weekly. | 1 |
 | Progress | Four line charts: CO2 tolerance (control pause), resting rate, exhale control, down-shift per drill. 4-week view. | 1 |

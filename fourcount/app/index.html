@@ -82,8 +82,8 @@
   <section class="screen" id="s-onboard">
     <div id="ob-1" class="stack fade">
       <div class="eyebrow">FourCount</div>
-      <h1>Regulate under load.</h1>
-      <p>The 4-count used in military and first-responder training, drilled five minutes a day and measured every week. Three numbers, no hardware. Four weeks to a lower resting rate and a longer hold.</p>
+      <h1>Regulate under load. Any load.</h1>
+      <p>The 4-count used in military and first-responder training, built for anyone. Five minutes a day, measured every week, no hardware. Four weeks to a lower resting rate and a longer hold. No experience needed.</p>
       <div class="card">
         <div class="tiny">Built on controlled trials: tactical breathing under simulated ambush (Bouchard 2012), cyclic sighing (Stanford 2023), resonance breathing (HRV biofeedback research), and the control pause. Not a medical device. Not a treatment. Not affiliated with any agency or unit.</div>
       </div>
@@ -118,7 +118,7 @@
       <button class="btn" style="margin-top:16px" onclick="startSession()">Start</button>
     </div>
     <div class="card">
-      <div class="row"><div><div style="font-weight:700">Reset drill</div><div class="tiny">60 seconds. Any time you are redlined.</div></div><button class="btn ghost" style="width:auto;padding:0 16px;min-height:44px" onclick="startReset()">Reset</button></div>
+      <div class="row"><div><div style="font-weight:700">Reset drill</div><div class="tiny">60 seconds. Before the meeting, after the argument, at 2 a.m.</div></div><button class="btn ghost" style="width:auto;padding:0 16px;min-height:44px" onclick="startReset()">Reset</button></div>
     </div>
     <div class="card" id="t-retest" hidden>
       <div class="row"><div><div style="font-weight:700">Re-test due</div><div class="tiny">Seven days since your last measurement.</div></div><button class="btn ghost" style="width:auto;padding:0 16px;min-height:44px" onclick="go('test')">Test</button></div>
@@ -301,7 +301,7 @@ function renderToday(){
   const delta=(k,inv)=>{ if(!t||!first||t===first) return ''; const d=t[k]-first[k]; return (d>0?'+':'')+d.toFixed(k==='rr'?1:0)+(inv?(d<=0?' better':''):(d>=0?' better':'')); };
   document.getElementById('t-stats').innerHTML = t ? `
     <div class="stat"><div class="l">Resting rate</div><div class="v">${t.rr.toFixed(1)}</div><div class="d">${delta('rr',true)}</div></div>
-    <div class="stat"><div class="l">CO2 tolerance</div><div class="v">${t.bolt}s</div><div class="d">${delta('bolt')}</div></div>
+    <div class="stat"><div class="l">CO2 tolerance (hold)</div><div class="v">${t.bolt}s</div><div class="d">${delta('bolt')}</div></div>
     <div class="stat"><div class="l">Exhale control</div><div class="v">${t.exhale}s</div><div class="d">${delta('exhale')}</div></div>`
     : `<div class="stat" style="cursor:pointer" onclick="go('test')"><div class="l">No baseline yet</div><div class="v" style="font-size:15px;font-family:var(--sans)">Take the 90-second test so the graph has a starting point.</div></div>`;
 }
@@ -358,7 +358,7 @@ function saveSession(){
 /* ---------- tests ---------- */
 const TESTS=[
   {k:'rr',title:'Resting breathing rate',desc:'Sit still for a moment. When the timer starts, tap the button once for every inhale. Sixty seconds.',unit:'breaths/min'},
-  {k:'bolt',title:'Control pause',desc:'Breathe normally. After a normal exhale, pinch your nose and start the timer. Stop at the FIRST clear urge to breathe, not your max hold.',unit:'seconds'},
+  {k:'bolt',title:'CO2 tolerance',desc:'Plain version: how long you can comfortably hold after a normal exhale. Breathe normally, exhale, pinch your nose, start the timer. Stop at the FIRST clear urge to breathe, not your max hold.',unit:'seconds'},
   {k:'exhale',title:'Longest comfortable exhale',desc:'Take a normal breath in. Start the timer and exhale slowly through pursed lips. Stop when you are empty, without straining.',unit:'seconds'},
 ];
 let ti=0, tres={}, tTimer=null, tStart=0, taps=0;

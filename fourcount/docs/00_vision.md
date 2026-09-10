@@ -1,20 +1,30 @@
-# FourCount: Vision (locked 2026-09-10)
+# FourCount: Vision (locked 2026-09-10, audience widened same day)
 
 ## The one-line prompt this product is built from
 
-Build FourCount, an iPhone app that trains physiological self-regulation the way military and first-responder programs teach it: a 4-count breath under load, practiced daily, measured weekly, with the graph as proof. Sell it as training, not calm. Audience: operators, first responders, athletes, and the civilian who wants that standard. No accounts, no library, one prescribed drill per day, one reset tool always within reach. Every claim cites a controlled trial. No treatment language. No endorsement claims.
+Build FourCount, an iPhone app that teaches any person to regulate their own body the way military and first-responder programs teach it: a 4-count breath under load, practiced daily, measured weekly, with the graph as proof. The method is operator-grade. The audience is everyone. Sell it as training, not calm. No accounts, no library, one prescribed drill per day, one reset tool always within reach. Every claim cites a controlled trial. No treatment language. No endorsement claims. No fitness prerequisite, no jargon without a plain-language twin.
 
 ## Positioning
 
-**Regulate under load.** The 4-count that operators drill, trained like a skill and measured every week.
+**Regulate under load. Any load.** The 4-count that operators drill, trained like a skill, measured every week, built for anyone.
 
-Category: performance training. Not meditation, not "calm." The user is not soothed, they are coached.
+Category: performance training for everyday people. Not meditation, not "calm." The user is not soothed, they are coached. The load can be a firefight or a 9 a.m. meeting, a night shift or a toddler at 2 a.m. The physiology is the same and so is the drill.
 
 Why this lane, in data:
 - Box breathing at a 4-count is the intervention DHA ships in Tactical Breather and the one Grossman's combat-psychology work popularized. The name FOURCOUNT is that count.
 - Tactical breathing reduced heart rate and cortisol in soldiers under a live simulated ambush (Bouchard 2012, PLOS ONE) and improved police performance and marksmanship in critical-incident simulations (Collabra 2025, PMC 2024).
 - The measurable outcomes with the strongest evidence (HRV at resonance, resting respiratory rate, CO2 tolerance) are progression metrics. Progression is a training story, not a mood story.
 - The incumbents in this lane (Tactical Breather, Breathe2Relax) are free, government-published, dated, and have no progression or measurement. The way past "free" is craft plus the graph.
+
+## Who it is for
+
+Anyone who wants to stop being run by their own nervous system. The operator and first responder are the standard the method is held to, not the only customer. The Depleted Professional, the Anxious High Functioner, and the Wired and Tired Sleeper from Phase 3 are all in. The app meets them with the same drills and the same scoreboard, and never asks them to pick a mood.
+
+Design consequences:
+- Onboarding assumes zero experience. The diaphragm lesson comes first, always.
+- Every technical term carries a plain twin on first use: "CO2 tolerance (how long you can comfortably hold after an exhale)".
+- Loads are named in everyday terms on the Reset card: before the meeting, after the argument, at 2 a.m.
+- Nothing is gated behind fitness. The ladder starts at a 4-count and only climbs when the user holds rhythm.
 
 ## What FourCount is
 
@@ -33,7 +43,7 @@ Why this lane, in data:
 
 ## Voice
 
-Direct. Short sentences. Coach, not therapist. Numbers over adjectives. "Redlined" and "flat," not "anxious" and "calm." Never cute.
+Direct. Short sentences. Coach, not therapist. Numbers over adjectives. "Redlined" and "flat," not "anxious" and "calm." Never cute, never gatekeeping. A beginner should feel invited, not tested.
 
 ## Money
 
@@ -42,4 +52,4 @@ Institutional (the defensible business): units, departments, teams, and academie
 
 ## The prompt for every future session on this project
 
-"FourCount is a performance-training app for physiological self-regulation. Every screen prescribes, measures, or proves. If a screen does none of those, cut it. Coach voice, no treatment claims, no endorsement claims, iPhone only, local-first, Lessons Learned Parts 1 to 6 are law."
+"FourCount teaches any person to regulate their own body using the operator-grade 4-count method: one prescribed drill a day, one 60-second reset always within reach, three hardware-free measurements every week, and the graph as proof. Every screen prescribes, measures, or proves. If a screen does none of those, cut it. Coach voice, beginner-safe, plain-language twin for every technical term, no treatment claims, no endorsement claims, iPhone only, local-first, Lessons Learned Parts 1 to 6 are law."
