@@ -18,12 +18,13 @@ Why this lane, in data:
 
 ## Who it is for
 
-Anyone who wants to stop being run by their own nervous system. The operator and first responder are the standard the method is held to, not the only customer. The Depleted Professional, the Anxious High Functioner, and the Wired and Tired Sleeper from Phase 3 are all in. The app meets them with the same drills and the same scoreboard, and never asks them to pick a mood.
+Anyone who wants to stop being run by their own nervous system. Three groups are named on every surface: operators, first responders, and athletes. They are the standard the method is held to, not the only customers. The Depleted Professional, the Anxious High Functioner, and the Wired and Tired Sleeper from Phase 3 are all in. The app meets them with the same drills and the same scoreboard, and never asks them to pick a mood.
 
 Design consequences:
 - Onboarding assumes zero experience. The diaphragm lesson comes first, always.
 - Every technical term carries a plain twin on first use: "CO2 tolerance (how long you can comfortably hold after an exhale)".
 - Loads are named in everyday terms on the Reset card: before the meeting, after the argument, at 2 a.m.
+- Athletes get their own load language: before the start, between rounds, after the session. The evidence for them is the sport-performance meta-analysis (slow-paced breathing, large effects for multi-week interventions) and the four-week recovery-breathing trial in baseball players.
 - Nothing is gated behind fitness. The ladder starts at a 4-count and only climbs when the user holds rhythm.
 
 ## What FourCount is

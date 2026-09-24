@@ -76,6 +76,9 @@ The lane decision changes the order, not the list. Tactical (box) breathing has 
 | Collabra: Psychology 2025 | Police, critical-incident simulation | Tactical breathing improved performance under stress. |
 | PMC 2024, "The first shot counts the most" | Student police officers | Tactical breathing before firing improved marksmanship accuracy. |
 
+| Systematic review and meta-analysis, International Review of Sport and Exercise Psychology 2022 | Athletes, physical sport performance | Slow-paced breathing improved physical performance; large effect sizes for longer-term interventions. |
+| Four-week trial, young baseball players | Slow breathing during recovery from weight training | Resting heart-rate variability improved; grip performance improved, sprint did not. |
+
 What that means for the build: box 4-count is the entry drill (it is the name, the operator's default, and it has stress-performance evidence). Extended exhale is the performance-under-load drill (Röttger). Cyclic sighing is the 60-second reset tool. Resonance breathing is the autonomic base. The control pause becomes the headline metric because CO2 tolerance is the thing breath-hold selection tests and stress tolerance both load on.
 
 ### The five that ship in the MVP
@@ -120,6 +123,9 @@ Banned (carried over from Phase 3 section 6): no treatment or cure language, no 
 - Tactical breathing, police critical-incident simulation (Collabra 2025): https://online.ucpress.edu/collabra/article/11/1/144527/213538/Tactical-Breathing-Enhances-Police-Performance-in
 - Tactical breathing and marksmanship (PMC 2024): https://pmc.ncbi.nlm.nih.gov/articles/PMC11622642/
 - DHA Tactical Breather fact sheet: https://health.mil/Reference-Center/Fact-Sheets/2025/07/18/Tactical-Breather-App-Fact-Sheet
+- Breathing techniques and physical sport performance, meta-analysis 2022: https://www.tandfonline.com/doi/abs/10.1080/1750984X.2022.2145573
+- Slow-pace breathing in baseball players, four weeks: https://www.sciencedirect.com/science/article/abs/pii/S0765159726000559
+- Slow-paced breathing for athletes (Laborde, Frontiers in Psychology 2021): https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2021.624655/full
 
 ## Sources
 
