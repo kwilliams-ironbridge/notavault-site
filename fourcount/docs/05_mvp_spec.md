@@ -64,6 +64,7 @@ Pricing (Phase 2 recommendation): $9.99 per month, $59.99 per year, 14-day trial
 | Charts | react-native-svg, hand-drawn lines | No chart library dependency risk in release builds. |
 | Backend | None in v1.0 | Add Supabase only when sync is a paid feature people ask for. |
 | Web prototype | `fourcount/app/index.html` in this repo | Testable today. Technique engine and program logic port 1:1 to TypeScript. |
+| iPhone app | github.com/kwilliams-ironbridge/fourcount-app | The Expo project. Moved out of this repo 2026-09-24. |
 
 ---
 
@@ -101,7 +102,7 @@ Submission rules:
 
 1. Name: decided, FOURCOUNT (2026-09-09). fourcount.app is owned. Remaining: holdcount defensively (optional), then the Class 9 and 41 knockout search.
 2. Lane: decided, performance training (2026-09-10). Calm-lane artboard removed from the canvas.
-3. Own repo: this prototype lives in notavault-site for speed. Move to its own repo when the Expo project starts.
+3. Own repo: done. The Expo app lives at github.com/kwilliams-ironbridge/fourcount-app as of 2026-09-24. Docs, research, prototype, and design stay here until they move.
 
 ## 7. Money
 
