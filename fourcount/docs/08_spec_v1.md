@@ -152,6 +152,8 @@ Wim Hof and any hyperventilation protocol: not in the product until a dedicated 
 
 ## 13. Development order
 
+Status 2026-09-30: M1 code complete and pushed to fourcount-app main (commit "M1: drill engine, measurements, safety screen, three-table database"). Static acceptance met: tsc, preflight, Metro export. Physical-device Release build still owed.
+
 **M1. Engine and measurements on a real phone.** Monotonic drill clock, background pause and resume, haptic cues, the three tests with guardrails, safety screen, three-table data model with migration from the JSON document. Testing: Release build on a physical iPhone; a 6-minute drill ends within 200 ms; backgrounding pauses; a control pause over 90 s prompts a redo. Acceptance: preflight passes, tsc clean, no module-scope side effects.
 
 **M2. Program and progress.** Prescription by week and cycle, ladder and ratio rules, clean-drill logic, off-week logic, Cycle 2 and Maintenance, Progress graph with muted points, drills-this-week counter, export JSON. Testing: simulate 35 days by shifting start_date; verify Day 8 gate, Day 29 rollover, ladder up and down. Acceptance: every screen has an empty state; no dead buttons.
